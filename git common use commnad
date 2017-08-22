@@ -1,0 +1,8 @@
+git init: init a respository
+git clone URL:init a repository by URL
+git remote -v: to show remote respository URL
+git status: check repository status
+git add filename:change file from working area to index area
+git commit -m "msg": change file from index area to local respository
+git diff:to show file where be modifyed
+git push respository name local branch name: remote branch name
