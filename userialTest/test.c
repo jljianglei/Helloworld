@@ -20,6 +20,7 @@ void * readLoop(void *msg) {
 		if(ret == -1)
 			break;
 	}
+	printf("exit readloop\n");
 	return NULL;
 }
 void * writeLoop(void *msg) {
@@ -44,7 +45,7 @@ int main() {
 	   return -1;
 	}
 	pthread_t pid = -1,pid2;
-#if 0
+#if 1
     if(pthread_create(&pid,NULL,readLoop,(void*)&fd) != 0) {
 	   printf("pthread create faild\n");
 	   return -1;
@@ -57,5 +58,6 @@ int main() {
 #endif
 	usleep(1000);
 	send_wakeup_signal(STC_USERIAL_RX_EXIT);
+	sleep(1);
 	return 0;
 }

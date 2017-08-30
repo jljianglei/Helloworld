@@ -38,13 +38,16 @@ int select_read(int fd,uint8_t* buf,uint16_t len) {
 	int n = 0, ret = -1;
 	uint8_t userial_running = 1;
 	char reason = 0;
+	struct timeval val;
+	val.tv_sec = 0;
+	val.tv_usec = 0;
 	while (userial_running) {
 	     int fd_max;
 		 FD_ZERO(&input);
 		 FD_SET(fd, &input);
 		 fd_max = create_signal_fds(&input);
 		 fd_max = fd_max > fd ? fd_max : fd;
-		 n = select(fd_max+1, &input, NULL, NULL, NULL);
+		 n = select(fd_max+1, &input, NULL, NULL, &val);//no block
 		 printf("n = %d\n",n);
 		 if(is_signaled(&input)) {
 		   reason = reset_signal();
