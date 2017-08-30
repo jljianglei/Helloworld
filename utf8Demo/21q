@@ -1,0 +1,12 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main() {
+    const char * str = "我爱我家";
+	char buf[10] = {0};
+	memcpy(buf,str,10);
+	int i;
+	printf("%s,len %d\n",str,strlen(str));
+	printf("%s\n",buf);
+	return 0;
+}
