@@ -23,7 +23,7 @@ class StcComCoder {
 	public:
 		static StcComCoder* getInstance();
 		void encode(DataFrame* frame,DataPacket* packet);
-		void decode(DataPacket* packet,uint8_t* frame);
+		void decode(DataPacket* packet,DataFrame* dataframe);
 
 };
 #endif

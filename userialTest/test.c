@@ -7,6 +7,7 @@
 #include<sys/stat.h>
 #include<fcntl.h>
 #include<unistd.h>
+#include <termios.h>
 void * readLoop(void *msg) {
 	int fd = *((int*)msg);
 	uint16_t len = 10;
@@ -37,26 +38,27 @@ void * writeLoop(void *msg) {
 }
 int main() {
 	int fd = -1;
-	fd = open("a.txt",O_RDWR,0x777);
+	fd = open("/dev/ttyUSB0",O_RDWR);
+	struct termios attr;
 	printf("fd = %d\n",fd);
 	if(fd < 0) {
 	   printf("open faild\n");
 	   close(fd);
 	   return -1;
 	}
+
 	pthread_t pid = -1,pid2;
 #if 1
     if(pthread_create(&pid,NULL,readLoop,(void*)&fd) != 0) {
 	   printf("pthread create faild\n");
 	   return -1;
 	}
-#else
-    if(pthread_create(&pid,NULL,writeLoop,(void*)&fd) != 0) {
+    if(pthread_create(&pid2,NULL,writeLoop,(void*)&fd) != 0) {
 	   printf("pthread create faild\n");
 	   return -1;
 	}
 #endif
-	usleep(1000);
+	usleep(1000000);
 	send_wakeup_signal(STC_USERIAL_RX_EXIT);
 	sleep(1);
 	return 0;

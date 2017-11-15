@@ -47,7 +47,7 @@ int select_read(int fd,uint8_t* buf,uint16_t len) {
 		 FD_SET(fd, &input);
 		 fd_max = create_signal_fds(&input);
 		 fd_max = fd_max > fd ? fd_max : fd;
-		 n = select(fd_max+1, &input, NULL, NULL, &val);//no block
+		 n = select(fd_max+1, &input, NULL, NULL,NULL);
 		 printf("n = %d\n",n);
 		 if(is_signaled(&input)) {
 		   reason = reset_signal();
