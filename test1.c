@@ -27,5 +27,6 @@ int main() {
    if(fd < 0) {
       perror("open faild");
    }
+   printf("-------------------------------------\n");
    return 0;
 }
