@@ -1,0 +1,2 @@
+t6.c::print:41,the arr elem is:
+t6.c::print:41,the arr elem is:
